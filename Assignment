@@ -1,0 +1,72 @@
+class Product:
+    SUPERMARKET_NAME="Hyper"
+    def __init__(self,product_id,name,price,manufacturer,weight,expiration_date,year):
+        self.__id=product_id
+        self.name=name
+        self.price=price
+        self.manufacturer=manufacturer
+        self.weight=weight
+        self.exp=expiration_date
+        self.year=year
+    def product_details(self):
+        print(f"""Market:{Product.SUPERMARKET_NAME} 
+         id: {self.__id}
+         name: {self.name}
+         price: {self.price}  
+         manufacturer: {self.manufacturer}  
+         weight: {self.weight} 
+         expiration_date:{self.exp}
+         year: {self.year}  """)
+    def set_id(self,new_id):
+        self.__id=new_id
+
+
+
+class Healthy(Product):
+    def __init__(self, product_id, name, price, manufacturer, weight, expiration_date, year,calories,components):
+        self.cal=calories
+        self.comp=components
+        self.__id=product_id
+        super().__init__(product_id, name, price, manufacturer, weight, expiration_date, year)
+    def healthy_product_details(self):
+        print(f"""Market:{Product.SUPERMARKET_NAME} 
+         id: {self.__id}
+         name: {self.name}
+         price: {self.price}  
+         manufacturer: {self.manufacturer}  
+         weight: {self.weight} 
+         expiration_date:{self.exp}
+         year: {self.year}
+         calories: {self.cal}
+         components: {self.comp}  """)
+   
+    def edit_cal(self,num):
+        self.cal+=num
+
+    def check_cals_comp(self):
+        print(f'calories={self.cal} , components= {self.comp}')
+    
+    def calculate_total_cal(self):
+        self.weight=int(input('enter weight in grams: '))
+        self.cal=int(input('enter calories per gram: '))
+        print("total calories = " , self.weight*self.cal)
+
+interface=input('type 1 for product_system , 2 for Healthy system , 3 to exit')
+if interface=='1':
+      print('Welcome to product system!')
+   
+      p1=Product(int(input(' product id:')) ,str(input(' product name:')), int(input(' product price:')), str(input('product manufacturer:')), int(input('weight:')),str(input('exp_date: ')), int(input('year:')) )
+      p1.product_details()
+      p1.set_id(int(input('edit ID:')))
+      p1.product_details()
+elif interface=='2':
+     print('Welcome to healthy system!')
+
+     p2=Healthy(int(input(' product id:')) ,str(input(' product name:')), int(input(' product price:')), str(input('product manufacturer:')), int(input('weight:')),str(input('exp_date: ')), int(input('year:')), int(input('calories:')), str(input('component:')) )
+     p2.healthy_product_details()
+     p2.edit_cal(int(input('increase calories by :')))
+     p2.healthy_product_details()
+     p2.check_cals_comp()
+     p2.calculate_total_cal()
+elif interface=='3':
+    print("Exiting system...")
